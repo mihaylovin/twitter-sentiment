@@ -1,5 +1,6 @@
 # twitter-sentiment
-**Live Demo:** [twitterment.herokuapp.com](http://twitterment.herokuapp.com)
+
+This is a fork of the original project by **duncanleung**
 
 _There is a daily limit on the number of Twitter Stream API requests. **Please don't leave the app running continually.**_
 >_If no Tweets show up, it's because the daily limit has already been reached. Please try again the next day._
