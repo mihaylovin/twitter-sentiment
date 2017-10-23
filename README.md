@@ -57,7 +57,3 @@ process.env.TWITTER_ACCESS_TOKEN_SECRET = 'YOUR-TOKEN-SECRET-HERE';
 - Run `npm install` to install dependencies
 - Run `node server/app-server.js` to start!
 - FYI: `npm start` will run webpack and bundle any changes you may make
-
-![Twitterment Main Screen](http://res.cloudinary.com/leungd/image/upload/v1486945672/github/twitterment-1.png)
-![Twitterment Stream Screen](http://res.cloudinary.com/leungd/image/upload/v1486945672/github/twitterment-2.png)
-![Twitterment Technologies Screen](http://res.cloudinary.com/leungd/image/upload/v1486945672/github/twitterment-3.png)

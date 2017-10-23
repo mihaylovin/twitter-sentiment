@@ -1,5 +1,6 @@
 //Require Dependencies
 var express = require('express');
+var https = require('https');
 
 var Twitter = require('./Twitter');
 var sentiment = require('./NodeSentiment.js');
@@ -29,9 +30,34 @@ io.sockets.on('connection', function(socket) {
 
   connections.push(socket);
   console.log('%s Connected. %s sockets connected', socket.id, connections.length);
-  
+
   var prevSearch = false;
   var twitterStream;
+
+  //init price chart
+  var getBitcoinPrice = function () {
+    const options = {
+      hostname: 'api.coinbase.com',
+      path: '/v2/prices/spot?currency=EUR',
+      method: 'GET'
+    };
+
+    const req = https.request(options, (res) => {
+    // console.log('statusCode:', res.statusCode);
+    // console.log('headers:', res.headers);
+
+    res.on('data', (d) => {
+        socket.emit('price', {price: d.toString("utf-8")});
+      });
+    });
+
+    req.on('error', (e) => {
+      console.error(e);
+    });
+    req.end();
+  }
+
+  setInterval(getBitcoinPrice, 1000);
 
   socket.on('search', function(payload) {
     console.log('Keyword: %s', payload.keyword);
@@ -72,5 +98,3 @@ io.sockets.on('connection', function(socket) {
   });
 
 }); //END io.sockets.on
-
-

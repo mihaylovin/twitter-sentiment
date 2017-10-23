@@ -1,9 +1,8 @@
 var React = require('react');
 
-var DataPoints = require('./DataPoints.jsx');
+
 var LinePath = require('./LinePath.jsx');
 var XYAxes = require('./XYAxes.jsx');
-var GridLine = require('./GridLine.jsx');
 
 
 //LineChart Holds All Data Points and the XYAxes
@@ -42,22 +41,12 @@ var LineChart = React.createClass({
     return (
       <svg className="line-chart" width={ this.props.chartWidth } height={ this.props.chartHeight }>
         <g { ...chartDisplay }>
-          <GridLine
-            xScale={ xScale }
-            yScale={ yScale }
-            { ...this.props }
-          />
           <XYAxes
             xScale={ xScale }
             yScale={ yScale }
             { ...this.props }
           />
           <LinePath
-            xScale = { xScale }
-            yScale= { yScale }
-            { ...this.props }
-          />
-          <DataPoints
             xScale = { xScale }
             yScale= { yScale }
             { ...this.props }

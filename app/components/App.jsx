@@ -15,6 +15,7 @@ class App extends React.Component {
     this.state = {
       status: 'disconnected',
       search: false,
+      prices: [],
       keyword: '',
       initTimestamp: '',
       collectedTweets: [],
@@ -22,7 +23,7 @@ class App extends React.Component {
           negTweets: 0, neutTweets: 0, timeBin: 5}],
       totalTweets: {total: 0, posTotal: 0,
           negTotal: 0, neutTotal: 0},
-      sentiment: 'Neutral'  
+      sentiment: 'Neutral'
     };
 
     this.emit = this.emit.bind(this);
@@ -38,6 +39,11 @@ class App extends React.Component {
     this.socket.on('disconnect', this.disconnect.bind(this));
     this.socket.on('sendTweet', function(receivedTweet) {
       self.addTweet(receivedTweet.tweet);
+    });
+
+    this.socket.on('price', function (price) {
+      
+      self.addPrice(JSON.parse(price.price).data.amount);
     });
   }
 
@@ -67,6 +73,11 @@ class App extends React.Component {
     console.log('Disconnected: %s', this.socket.id);
   }
 
+  addPrice(price) {
+    console.log(this.state.prices);
+    this.setState({'prices': [...this.state.prices, price]});
+  }
+
   initTimestamp(timestamp) {
     this.setState({ initTimestamp: timestamp.initTimestamp });
     this.setState({ search: true });
@@ -77,7 +88,7 @@ class App extends React.Component {
   addTweet(tweet) {
     var tweets = this.state.collectedTweets;
     var newTweets = update(tweets, {$unshift: [tweet]});
-    
+
     this.setState({ collectedTweets: newTweets });
     this.binTweets(tweet.timestamp_ms, tweet.sentiment);
     this.countTweets(tweet.sentiment);
@@ -168,9 +179,9 @@ class App extends React.Component {
     return (
       <div>
         <Hero emit={ this.emit } initTimestamp={ this.initTimestamp } />
-        
-        { this.state.search ? 
-          <Results 
+
+        { this.state.search ?
+          <Results
             collectedTweets={ this.state.collectedTweets }
             binnedTweets={ this.state.binnedTweets }
             totalTweets={ this.state.totalTweets }
@@ -184,8 +195,7 @@ class App extends React.Component {
 }
 // var App = React.createClass({
 
-  
+
 // });
 
 module.exports = App;
-

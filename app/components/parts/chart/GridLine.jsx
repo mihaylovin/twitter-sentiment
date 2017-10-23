@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 
 //GridLine
 var GridLine = React.createClass({
-  
+
   componentDidUpdate: function() {
     this.renderGridline();
   },
@@ -14,8 +14,8 @@ var GridLine = React.createClass({
 
   //Use D3 to Create Axis on 'this DOM Node'
   renderGridline: function() {
-    var node = ReactDOM.findDOMNode();
-
+    var node = this.refs.gridline;
+    console.log(node);
     var gridline = d3.svg.axis()
                       .scale(this.props.yScale)
                       .tickSize(-this.props.width, 0, 0)
@@ -34,7 +34,7 @@ var GridLine = React.createClass({
     };
 
     return(
-      <g { ...yGridline }></g>
+      <g ref="gridline" { ...yGridline }></g>
     );
   }
 });
