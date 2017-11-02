@@ -18,7 +18,7 @@ var LinePath = React.createClass({
                       .y(function(d) {
                         return yScale(d.numTweets);
                       })
-                      .interpolate("cardinal");
+                      .interpolate("linear");
 
     var pathPositive = d3.svg.line()
                         .x(function(d) {
@@ -50,10 +50,7 @@ var LinePath = React.createClass({
     return (
       <g>
         <Line path={ pathTotal(this.props.binnedTweets) } stroke={ "blue" }/>
-        <Line path={ pathNeutral(this.props.binnedTweets) } stroke={ "sandybrown" }/>
-        <Line path={ pathNegative(this.props.binnedTweets) } stroke={ "red" }/>
-        <Line path={ pathPositive(this.props.binnedTweets) } stroke={ "green" }/>
-        
+
       </g>
     );
   }

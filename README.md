@@ -10,15 +10,11 @@ _There is a daily limit on the number of Twitter Stream API requests. **Please d
 ####About
 Twitterment (Twitter Sentiment) Is a real-time Twitter sentiment dashboard that analyzes and graphs the sentiment of a tracked keyword.
 
-Testing out:
+Tech Stack:
 - Socket.io
 - React.js
 - D3.js
 
-Currently in the process of refactoring to update to:
-- ES6
-- React 0.x to 15.x
-- React controller views and stateless functional components
 
 ####Summary
 Twitterment listens to the Twitter Streaming API for the searched keyword. Received Tweets are analyzed with an [AFINN-based sentiment analysis npm module](https://github.com/thisandagain/sentiment), and the analyzed Tweet object is sent to the client.
@@ -36,24 +32,3 @@ Regarding D3 and React integration, Twitterment uses React to handle DOM manipul
 - Twitter Streaming API
 - Babel
 - Webpack
-
-
-##To run an instance of this app, you need:
-
-1 =========== Twitter API Key ===========
-- Create `config.js` in `/twitter-sentiment/server/`
-- `config.js` holds your own Twitter API Keys
-
-
-```
-config.js
-process.env.TWITTER_CONSUMER_KEY = 'YOUR-CONSUMER-KEY-HERE';
-process.env.TWITTER_CONSUMER_SECRET = 'YOUR-CONSUMER-SECRET-HERE';
-process.env.TWITTER_ACCESS_TOKEN_KEY = 'YOUR-TOKEN-HERE';
-process.env.TWITTER_ACCESS_TOKEN_SECRET = 'YOUR-TOKEN-SECRET-HERE';
-```
-
-2 =========== Clone the Repo ===========
-- Run `npm install` to install dependencies
-- Run `node server/app-server.js` to start!
-- FYI: `npm start` will run webpack and bundle any changes you may make

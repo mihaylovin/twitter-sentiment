@@ -14,8 +14,9 @@ function Results(props){
             binnedTweets={ props.binnedTweets }
             totalTweets={ props.totalTweets }
             sentiment= { props.sentiment }
+            prices={ props.prices }
           />
-          <TwitterStream collectedTweets={ props.collectedTweets } />
+          
         </div>
       </div>
     );

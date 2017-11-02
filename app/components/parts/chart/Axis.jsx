@@ -17,7 +17,7 @@ var Axis = React.createClass({
 
   //Use D3 to Create Axis on 'this DOM Node'
   renderAxis: function() {
-    var node = ReactDOM.findDOMNode();
+    var node = this.refs.axis;
 
     var axis = d3.svg.axis()
                   .scale(this.props.scale)
@@ -41,7 +41,7 @@ var Axis = React.createClass({
   },
 
   renderYLabel: function() {
-    var node = ReactDOM.findDOMNode();
+
 
     var yLabel = d3.select(".y.axis")
                     .append("text")
@@ -56,7 +56,7 @@ var Axis = React.createClass({
   //Use React to Append g Element (Usually D3 Handles This)
   render: function() {
     return(
-      <g className={ this.props.className } transform={ this.props.translate }></g>
+      <g ref="axis" className={ this.props.className } transform={ this.props.translate }></g>
     );
   }
 });

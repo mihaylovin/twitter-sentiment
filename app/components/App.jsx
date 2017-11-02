@@ -7,6 +7,8 @@ var Hero = require('./Hero.jsx');
 var TechStack = require('./TechStack.jsx');
 var Results = require('./Results.jsx');
 
+const store = require('./store');
+
 
 //App is the Main Container
 class App extends React.Component {
@@ -42,7 +44,6 @@ class App extends React.Component {
     });
 
     this.socket.on('price', function (price) {
-      
       self.addPrice(JSON.parse(price.price).data.amount);
     });
   }
@@ -54,6 +55,7 @@ class App extends React.Component {
     // Reset Dashboard on New Search
     this.setState({
       collectedTweets: [],
+      prices:[],
       binnedTweets: [{numTweets: 0, posTweets: 0,
       negTweets: 0, neutTweets: 0, timeBin: 5}],
       totalTweets: {total: 0, posTotal: 0,
@@ -65,6 +67,9 @@ class App extends React.Component {
   connect() {
     this.setState({ status: 'connected' });
     console.log('Connected on socket: %s', this.socket.id);
+    if (store.get("search")) {
+      this.socket.emit("search", {keyword: store.get("search")});
+    }
   }
 
   //Disconnect Handler
@@ -74,8 +79,9 @@ class App extends React.Component {
   }
 
   addPrice(price) {
-    console.log(this.state.prices);
-    this.setState({'prices': [...this.state.prices, price]});
+    console.log(price);
+
+    this.setState({'prices': [...this.state.prices, {price: price, date: new Date()}]});
   }
 
   initTimestamp(timestamp) {
@@ -186,9 +192,9 @@ class App extends React.Component {
             binnedTweets={ this.state.binnedTweets }
             totalTweets={ this.state.totalTweets }
             sentiment= { this.state.sentiment }
+            prices={ this.state.prices }
           /> : null }
 
-        <TechStack />
       </div>
     );
   }

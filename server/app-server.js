@@ -57,7 +57,7 @@ io.sockets.on('connection', function(socket) {
     req.end();
   }
 
-  setInterval(getBitcoinPrice, 1000);
+  setInterval(getBitcoinPrice, 4000);
 
   socket.on('search', function(payload) {
     console.log('Keyword: %s', payload.keyword);
@@ -75,18 +75,18 @@ io.sockets.on('connection', function(socket) {
 
 
     var lastTimestamp = Date.now(),
-        speedLimiter = 800; //800ms
+        speedLimiter = 400; //800ms
 
     //Turn on Twitter Stream
     twitterStream.on('tweet', function(tweet) {
 
-      if(tweet.timestamp_ms - lastTimestamp > speedLimiter) {
+      //if(tweet.timestamp_ms - lastTimestamp > speedLimiter) {
 
         lastTimestamp = Date.now();
 
         // Send Tweet Object to Client
         socket.emit('sendTweet', {tweet: sentiment.getSentiment(tweet, socket)});
-      }
+      //}
     });
 
     socket.once('disconnect', function() {

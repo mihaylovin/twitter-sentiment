@@ -14,6 +14,7 @@ var Dashboard = React.createClass({
           binnedTweets={ this.props.binnedTweets }
           totalTweets={ this.props.totalTweets }
           sentiment= { this.props.sentiment }
+          prices={ this.props.prices }
         />
       </div>
     );

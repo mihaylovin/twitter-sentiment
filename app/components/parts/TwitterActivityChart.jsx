@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var d3 = require('d3');
 
 var LineChart = require('./chart/LineChart.jsx');
+var PriceChart = require('./chart/PriceChart.jsx');
 
 
 var chartProps = {
@@ -31,15 +32,15 @@ var barProps = {
 var TwitterActivityChart = React.createClass({
 
   componentWillUpdate: function(nextProps, nextState) {
-    
+
     /*Counter Highlighter
     ===============*/
-    
+
     //Positive Highlighter
-    if(Number(this.refs.positivecounter.innerHTML) != nextProps.totalTweets.posTotal) {
+    if(this.refs.positivecounter && Number(this.refs.positivecounter.innerHTML) != nextProps.totalTweets.posTotal) {
       this.refs.positivearrow.classList.add('positive');
       this.refs.positivecounter.classList.add('positive');
-
+      //
       this.refs.neutralarrow.classList.remove('neutral');
       this.refs.neutralcounter.classList.remove('neutral');
       this.refs.negativearrow.classList.remove('negative');
@@ -47,7 +48,7 @@ var TwitterActivityChart = React.createClass({
     }
 
     //Neutral Highlighter
-    if(Number(this.refs.neutralcounter.innerHTML) != nextProps.totalTweets.neutTotal) {
+    if(this.refs.neutralcounter && Number(this.refs.neutralcounter.innerHTML) != nextProps.totalTweets.neutTotal) {
       this.refs.neutralarrow.classList.add('neutral');
       this.refs.neutralcounter.classList.add('neutral');
 
@@ -58,7 +59,7 @@ var TwitterActivityChart = React.createClass({
     }
 
     //Negative Highlighter
-    if(Number(this.refs.negativecounter.innerHTML) !== nextProps.totalTweets.negTotal) {
+    if(this.refs.negativecounter && Number(this.refs.negativecounter.innerHTML) !== nextProps.totalTweets.negTotal) {
       this.refs.negativearrow.classList.add('negative');
       this.refs.negativecounter.classList.add('negative');
 
@@ -76,7 +77,7 @@ var TwitterActivityChart = React.createClass({
     } else if(this.props.sentiment == 'Negative') {
       this.refs.sentiment.classList.add('negative');
       this.refs.sentiment.classList.remove('positive');
-    } else {
+    } else if (this.refs.sentiment) {
       this.refs.sentiment.classList.remove('negative');
       this.refs.sentiment.classList.remove('positive');
     }
@@ -122,6 +123,13 @@ var TwitterActivityChart = React.createClass({
         <div className="overall-sentiment">
           <h3>Overall Sentiment</h3>
           <p ref="sentiment">{this.props.sentiment}</p>
+          <p>{this.props.prices[this.props.prices.length-1].price}</p>
+        </div>
+        <div>
+          <PriceChart prices={ this.props.prices }
+            { ...chartProps }
+            { ...chartArea }
+          />
         </div>
       </div>
     );

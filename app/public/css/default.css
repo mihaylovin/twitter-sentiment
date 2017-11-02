@@ -387,13 +387,13 @@ header nav ul #home-nav a {
 ======================== */
 /* line 419, default.scss */
 .results {
-  height: 700px;
+  height: 1000px;
   /* Twitter Stream Styles
   ======================== */
 }
 /* line 422, default.scss */
 .results .dashboard {
-  height: 700px;
+  height: 1000px;
   overflow-y: hidden;
   background-color: #1a252f;
   /* Activity Chart Styles

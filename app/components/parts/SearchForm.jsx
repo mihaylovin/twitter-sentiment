@@ -1,11 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+const store = require('../store');
 
 class SearchForm extends React.Component {
   search() {
     var keyword = ReactDOM.findDOMNode(this.refs.keyword).value;
     var initTimestamp = new Date().getTime();
-    
+    store.put("search", keyword);
     this.props.emit('search', { keyword: keyword });
     this.props.initTimestamp({ initTimestamp: initTimestamp });
   }
@@ -22,7 +23,7 @@ class SearchForm extends React.Component {
           </form>
       </div>
     );
-  }  
+  }
 }
 
 module.exports = SearchForm;

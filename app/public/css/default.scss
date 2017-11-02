@@ -131,7 +131,7 @@ header {
 /* Hero and Search Bar Styles
 ======================== */
 .hero {
-  height: 700px;
+  height: 1000px;
   background-image: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.8)),  url(../img/hero.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -143,7 +143,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 800px;
+    height: 1000px;
 
     h1,
     h2 {
@@ -191,12 +191,12 @@ header {
       margin-top: 40px;
       margin-right: auto;
       margin-left: auto;
-      
+
       input:focus {
         border: 1px solid $CTA-hover-green;
         box-shadow: 0 0 4px $CTA-hover-green;
       }
-      
+
       .btn-default {
         background-color: $primary-green;
         border-color: $primary-green;
@@ -417,10 +417,10 @@ header {
 /* Results Section Styles
 ======================== */
 .results {
-  height: 700px;
+  height: 1000px;
 
   .dashboard {
-    height: 700px;
+    height: 1000px;
     overflow-y: hidden;
     background-color: $background-dark-gray;
 
@@ -489,7 +489,7 @@ header {
         .total {
           width: 100%;
           position: relative;
-          
+
           h3 {
             margin: 0;
             padding: 10px 0;
@@ -532,7 +532,7 @@ header {
               color: $positive;
             }
 
-            
+
             &.neutral {
               color: $neutral;
             }
@@ -613,7 +613,7 @@ header {
       }
     }
   }
-  
+
   /* Twitter Stream Styles
   ======================== */
   .stream {
@@ -680,7 +680,7 @@ header {
             position: absolute;
             top: 5px;
             right: 0;
-            display: inline-block;            
+            display: inline-block;
 
             &.positive {
               width: 0;
@@ -715,7 +715,7 @@ header {
         }
       }
     }
-  } 
+  }
 }
 
 /* Footer Styles
@@ -794,32 +794,3 @@ footer {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
